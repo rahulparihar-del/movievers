@@ -18,3 +18,6 @@ https://api.themoviedb.org/3/movie/upcoming?api_key=3454224a5163078c973c4143e130
 
 Search:
 https://api.themoviedb.org/3/search/movie?api_key=3454224a5163078c973c4143e13020f2&query={movie_name}
+
+Project Live: 
+https://movievers-rr.netlify.app/
