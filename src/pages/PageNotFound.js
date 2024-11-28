@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useTitle } from "../hooks/useTitle";
 
 const PageNotFound = ({title}) => {
+  // eslint-disable-next-line
   const pageTitle = useTitle(title)
   return (
     <main>
