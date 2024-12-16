@@ -1,11 +1,11 @@
 import "./App.css";
 import AllRoutes from "./routes/AllRoutes";
-import { Header, Footer} from "../src/components/index";
+import { Header, Footer, TMDBErrorNotice } from "../src/components/index";
 
 function App() {
   return (
     <div className="App">
-      {/* <TMDBErrorNotice /> */}
+      <TMDBErrorNotice />
       <Header />
       <AllRoutes />
       <Footer />
