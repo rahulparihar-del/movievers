@@ -4,13 +4,17 @@ const useFetch = (apiPath, searchQuery = "") => {
   const [data, setData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1); // Track current page
   const [hasMore, setHasMore] = useState(true); // Check if more pages are available
+  const [loading, setLoading] = useState(false);
 
   const url = `https://api.themoviedb.org/3/${apiPath}?api_key=${process.env.REACT_APP_API_KEY}&query=${searchQuery}`;
+  // const url2 = `http://private-anon-ccb4cc208e-fanarttv.apiary-mock.com/v3/movies/latest?api_key=${process.env.REACT_APP_API_KEY}&query=${searchQuery}`;
+  // console.log(data)
 
 
   // Fetches data for a specific page from the API 
   const fetchData = useCallback(async (page) => {
     try {
+      setLoading(true);
       const response = await fetch(`${url}&page=${page}`);
       const result = await response.json();
 
@@ -20,6 +24,8 @@ const useFetch = (apiPath, searchQuery = "") => {
       }
     } catch (error) {
       console.error("Error fetching data:", error);
+    }finally {
+      setLoading(false); // Set loading to false after fetching
     }
   }, [url]);
 
@@ -38,7 +44,7 @@ const useFetch = (apiPath, searchQuery = "") => {
     setCurrentPage((prevPage) => prevPage + 1); // Increment the page number
   };
 
-  return { data, hasMore, loadMore };
+  return { data, hasMore, loadMore, loading };
 };
 
 export default useFetch;

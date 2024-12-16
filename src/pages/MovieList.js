@@ -2,14 +2,13 @@ import React from "react";
 import MovieCard from "../components/MovieCard";
 import useFetch from "../hooks/useFetch";
 import { useTitle } from "../hooks/useTitle";
+import MovieSkeletonGrid from "../components/MovieCardSkeleton";
 
 const MovieList = ({ apiPath, title }) => {
-  const { data: movies, hasMore, loadMore } = useFetch(apiPath);
+  const { data: movies, hasMore, loadMore, loading } = useFetch(apiPath);
 
   // eslint-disable-next-line
   const pageTitle = useTitle(title);
-
-  
 
   return (
     <main>
@@ -20,7 +19,11 @@ const MovieList = ({ apiPath, title }) => {
           ))}
         </div>
 
-        {hasMore && (
+        {loading && (
+          <MovieSkeletonGrid />
+        )}
+
+        {!loading && hasMore && (
           <div className="flex justify-center mt-10">
             <button
               onClick={loadMore}
